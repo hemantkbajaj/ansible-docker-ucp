@@ -25,7 +25,7 @@ The present document assumes a minimum understanding in concepts like virtualiza
 The following versions or higher are required to use the playbooks described in later sections.
 
 - Ansible 2.2
-- Docker EE 17.03
+- Docker EE 17.06
 
 # Steps to provision the environment
 
