@@ -1,39 +1,41 @@
 ---
 # VMware configuration
-vcenter_hostname: 'LondonVC.cloud.local'
-vcenter_username: 'David.Pintor@DEMO'
-datacenter: 'London'
+vcenter_hostname: 'vcenter.am2.cloudra.local'
+vcenter_username: 'administrator@vsphere.local'
+datacenter: 'DEVOPS'
 vm_username: 'root'
-vm_template: 'dp-template'
-folder_name: '/dp'
-datastores: ['Docker-DS01','Docker-DS02']
+vm_template: 'clh-tpl-simply02'
+folder_name: '/clh'
+datastores: ['Docker_DS01']
 disk2: '/dev/sdb'
 disk2_part: '/dev/sdb1'
 vsphere_plugin_version: 'latest' # was 0.12
 
 # Simplivity configuration
-simplivity_username: 'David.Pintor@DEMO'
-omnistack_ovc: ['10.20.4.166']
+simplivity_username: 'Administrator@vsphere.local'
+#omnistack_ovc: ['10.10.173.109','10.10.173.110','10.10.173.111']
+omnistack_ovc: ['10.10.173.109']
+rest_api_pause: 10
 backup_policies:
- - name: 'dp-bronze'
+ - name: 'clh-bronze'
    days: 'All'
    start_time: '11:30'
    frequency: '1440'
-   retention: '10080'
- - name: 'dp-gold'
+   retention: '45360'
+ - name: 'clh-gold'
    days: 'All'
    start_time: '00:00'
    frequency: '60'
-   retention: '2880'
+   retention: '45360'
 dummy_vm_prefix: 'dummyVM'
-docker_volumes_policy: 'dp-gold'
+docker_volumes_policy: 'clh-gold'
 
 # Networking
 nic_name: 'ens192'
-gateway: '10.20.4.1'
-dns: ['10.20.0.12','10.20.0.10']
-domain_name: 'dabeed.net'
-ntp_servers: ['0.us.pool.net.org','1.us.pool.net.org','2.us.pool.net.org']
+gateway: '10.10.172.1'
+dns: ['10.10.173.1']
+domain_name: 'am2.cloudra.local'
+ntp_servers: [' 10.12.2.1','0.us.pool.net.org','1.us.pool.net.org']
 
 # Docker configuration
 docker_ee_url: 'https://storebits.docker.com/ee/linux/sub-bee89908-9360-4f5c-a3e2-e059a8f88605'
@@ -41,7 +43,7 @@ rhel_version: '7.3'
 dtr_version: 'latest'
 ucp_version: 'latest'
 images_folder: '/docker-images'
-license_file: '/root/ansible-docker-ucp/license.lic'
+license_file: '/root/ops/license.lic'
 ucp_username: 'admin'
 
 # Monitoring configuration
@@ -53,6 +55,6 @@ grafana_version: '4.4.3'
 # Environment configuration
 # Leave proxy settings empty if proxy is not required
 env:
-  http_proxy: ''
-  https_proxy: ''
-  no_proxy: ''
+  http_proxy: 'proxy.am2.hpelabs.net:8080'
+  https_proxy: 'proxy.am2.hpelabs.net:8080'
+  no_proxy: 'localhost,am2.cloudra.local,10.10.174.'

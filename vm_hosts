@@ -1,64 +1,64 @@
 ## UCP
 [ucp_main]
-dp-ucp-01 ip_addr='10.20.6.74/22' esxi_host='omnicube204165.cloud.local'
+clh-ucp01 ip_addr='10.10.174.112/22' esxi_host='simply01.am2.cloudra.local'
 
 [ucp]
-dp-ucp-01 ip_addr='10.20.6.74/22' esxi_host='omnicube204165.cloud.local'
-dp-ucp-02 ip_addr='10.20.6.75/22' esxi_host='omnicube204165.cloud.local'
-dp-ucp-03 ip_addr='10.20.6.76/22' esxi_host='omnicube204165.cloud.local'
+clh-ucp01 ip_addr='10.10.174.112/22' esxi_host='simply01.am2.cloudra.local'
+clh-ucp02 ip_addr='10.10.174.113/22' esxi_host='simply02.am2.cloudra.local'
+clh-ucp03 ip_addr='10.10.174.114/22' esxi_host='simply03.am2.cloudra.local'
 
 [ucp:vars]
 cpus='4'
 ram='8192'
 disk2_size='200'
-node_policy='dp-bronze'
+node_policy='clh-bronze'
 
 # DTR
 [dtr_main]
-dp-dtr-01 ip_addr='10.20.6.71/22' esxi_host='omnicube204165.cloud.local'
+clh-dtr01 ip_addr='10.10.174.115/22' esxi_host='simply01.am2.cloudra.local'
 
 [dtr]
-dp-dtr-01 ip_addr='10.20.6.71/22' esxi_host='omnicube204165.cloud.local'
-dp-dtr-02 ip_addr='10.20.6.72/22' esxi_host='omnicube204165.cloud.local'
-dp-dtr-03 ip_addr='10.20.6.73/22' cpus='6' esxi_host='omnicube204165.cloud.local'
+clh-dtr01 ip_addr='10.10.174.115/22'          esxi_host='simply01.am2.cloudra.local'
+clh-dtr02 ip_addr='10.10.174.116/22'          esxi_host='simply02.am2.cloudra.local'
+clh-dtr03 ip_addr='10.10.174.117/22' cpus='6' esxi_host='simply03.am2.cloudra.local'
 
 [dtr:vars]
 cpus='4' 
 ram='16384' 
 disk2_size='200'
-node_policy='dp-gold'
+node_policy='clh-gold'
 
 ## WORKER
 [worker]
-dp-worker-01 ip_addr='10.20.6.77/22' esxi_host='omnicube204165.cloud.local'
-dp-worker-02 ip_addr='10.20.6.78/22' esxi_host='omnicube204165.cloud.local'
-dp-worker-03 ip_addr='10.20.6.79/22' esxi_host='omnicube204165.cloud.local'
+clh-worker01 ip_addr='10.10.174.122/22' esxi_host='simply01.am2.cloudra.local'
+clh-worker02 ip_addr='10.10.174.123/22' esxi_host='simply02.am2.cloudra.local'
+clh-worker03 ip_addr='10.10.174.124/22' esxi_host='simply03.am2.cloudra.local'
 
 [worker:vars]
 cpus='4'
 ram='16384'
 disk2_size='200'
-node_policy='dp-bronze'
+node_policy='clh-bronze'
 
 ## LOAD BALANCERS
 [ucp_lb]
-dp-ucp ip_addr='10.20.6.81/22' esxi_host='omnicube204165.cloud.local'
+clh-ucp ip_addr='10.10.174.118/22'    esxi_host='simply01.am2.cloudra.local'
 
 [dtr_lb]
-dp-dtr ip_addr='10.20.6.80/22' esxi_host='omnicube204165.cloud.local'
+clh-dtr ip_addr='10.10.174.119/22'    esxi_host='simply02.am2.cloudra.local'
 
 [worker_lb]
-dp-worker ip_addr='10.20.6.82/22' esxi_host='omnicube204165.cloud.local'
+clh-worker ip_addr='10.10.174.120/22' esxi_host='simply03.am2.cloudra.local'
 
 [lbs]
-dp-ucp ip_addr='10.20.6.81/22' esxi_host='omnicube204165.cloud.local'
-dp-dtr ip_addr='10.20.6.80/22' esxi_host='omnicube204165.cloud.local'
-dp-worker ip_addr='10.20.6.82/22' esxi_host='omnicube204165.cloud.local'
+clh-ucp ip_addr='10.10.174.118/22'    esxi_host='simply01.am2.cloudra.local'
+clh-dtr ip_addr='10.10.174.119/22'    esxi_host='simply02.am2.cloudra.local'
+clh-worker ip_addr='10.10.174.120/22' esxi_host='simply03.am2.cloudra.local'
 
 [lbs:vars]
 cpus='2'
 ram='4096'
-node_policy='dp-bronze'
+node_policy='clh-bronze'
 
 [docker:children]
 ucp
@@ -66,21 +66,21 @@ dtr
 worker
 
 [nfs]
-dp-nfs ip_addr='10.20.6.83/22' esxi_host='omnicube204165.cloud.local'
+clh-nfs ip_addr='10.10.174.121/22'    esxi_host='simply03.am2.cloudra.local'
 
 [nfs:vars]
 cpus='2'
 ram='4096'
 disk2_size='200'
-node_policy='dp-gold'
+node_policy='clh-gold'
 
 [logger]
-dp-logger ip_addr='10.20.6.84/22' esxi_host='omnicube204165.cloud.local'
+clh-logger ip_addr='10.10.174.125/22' esxi_host='simply02.am2.cloudra.local'
 
 [logger:vars]
 cpus='2'
 ram='4096'
-node_policy='dp-gold'
+node_policy='clh-gold'
 
 [vms:children]
 ucp
